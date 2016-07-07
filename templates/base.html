@@ -4,10 +4,30 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="{% static "app/css/bootstrap.css" %}" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="{% static "app/css/materialize.css" %}" media="screen" charset="utf-8">
   </head>
   <body>
     <div class="container">
+      <!-- Dropdown Structure -->
+        <ul id="dropdown1" class="dropdown-content">
+          <li><a href="/">one</a></li>
+          <li><a href="/">two</a></li>
+          <li class="divider"></li>
+          <li><a href="/">three</a></li>
+        </ul>
+        <nav>
+          <div class="nav-wrapper grey">
+            <a href="/" class="brand-logo">Bill's Diner</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li><a href="{% url 'kitchen_view' %}">Kitchen</a></li>
+              <li><a href="{% url 'server_view' %}">Server</a></li>
+              <li><a href="{% url 'owner_view' %}">Owner</a></li>
+      <!-- Dropdown Trigger -->
+              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right"></i></a></li>
+            </ul>
+          </div>
+        </nav>
       {% block content %}
         Default Content
       {% endblock %}
