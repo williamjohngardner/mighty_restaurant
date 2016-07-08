@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView
 
 from app.models import Category, MenuItem, Profile, Position, Order
 
@@ -41,7 +41,28 @@ class ServerView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category_list'] = Category.objects.all()
+        context['menu_items_list'] = MenuItem.objects.all()
         return context
+
+
+class OrderListView(ListView):
+    template_name = "order_list.html"
+    model = Order
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['order_list'] = Order.objects.all()
+        return context
+
+
+class OrderDetailView(DetailView):
+    model = Order
+
+
+class CreateOrderView(CreateView):
+    model = Order
+    fields = ["item", "qty", "notes", "profile", "fulfilled", "paid"]
+    success_url = reverse_lazy("server_view")
 
 
 class OwnerView(ListView):
