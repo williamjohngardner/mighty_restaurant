@@ -2,6 +2,9 @@
 
 {% block content %}
   {% for item in order_items  %}
-    {{item}}
+    {{item.item}}
+    {{item.qty}}
+    {{item.notes}}
+    {{item.profile}}
   {% endfor %}
 {% endblock %}

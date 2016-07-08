@@ -36,12 +36,19 @@ class MenuItem(models.Model):
 
 
 class Order(models.Model):
-    item = models.ForeignKey(MenuItem)
-    qty = models.IntegerField()
+    item = models.ManyToManyField(MenuItem)
     notes = models.TextField()
     profile = models.ForeignKey(Profile)
-    fulfilled = models.BooleanField()
-    paid = models.BooleanField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created"]
 
     def __str__(self):
         return str(self.pk)
+
+
+class Quantity(models.Model):
+    item = models.ForeignKey(MenuItem)
+    quantity = models.IntegerField()
+    order = models.ForeignKey(Order)

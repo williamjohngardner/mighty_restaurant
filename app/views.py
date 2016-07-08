@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView
 
-from app.models import Category, MenuItem, Profile, Position, Order
+from app.models import Category, MenuItem, Profile, Position, Order, Quantity
 from app.forms import OrderForm
 
 
