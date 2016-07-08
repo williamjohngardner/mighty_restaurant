@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView
 
 from app.models import Category, MenuItem, Profile, Position, Order
+from app.forms import OrderForm
 
 
 class IndexView(TemplateView):
@@ -60,10 +61,21 @@ class OrderDetailView(DetailView):
 
 
 class CreateOrderView(CreateView):
-    model = Order
+    form = OrderForm
     fields = ["item", "qty", "notes", "profile", "fulfilled", "paid"]
     success_url = reverse_lazy("server_view")
+    queryset = Order.objects.all()
+    template_name = "app/order_form.html"
 
+
+class DisplayOrderView(ListView):
+    template_name = "order.html"
+    model = Order
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['order_items'] = Order.objects.filter(item=2)
+        return context
 
 class OwnerView(ListView):
     template_name = "owner.html"

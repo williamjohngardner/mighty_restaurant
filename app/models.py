@@ -14,7 +14,7 @@ class Profile(models.Model):
     position = models.ForeignKey(Position)
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
 
 class Category(models.Model):
@@ -44,4 +44,4 @@ class Order(models.Model):
     paid = models.BooleanField()
 
     def __str__(self):
-        return self.pk
+        return str(self.pk)
