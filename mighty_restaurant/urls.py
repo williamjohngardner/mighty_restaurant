@@ -6,6 +6,7 @@ from django.contrib import admin
 
 from app.views import IndexView, KitchenView, ServerView, OwnerView, ProfilePageView, CreateOrderView, OrderListView, OrderDetailView, DisplayOrderView
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('django.contrib.auth.urls')),

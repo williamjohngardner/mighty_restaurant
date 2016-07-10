@@ -29,26 +29,21 @@ class MenuItem(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     category = models.ForeignKey(Category)
-    photo = models.ImageField(upload_to="menu_photos", null=True, blank=True, verbose_name="Menu Photo")
 
     def __str__(self):
         return self.name
 
 
-class Order(models.Model):
+class Quantity(models.Model):
     item = models.ManyToManyField(MenuItem)
+    quantity = models.IntegerField()
+
+
+class Order(models.Model):
+    item = models.ForeignKey(Quantity, related_name="unicorn")
+    quantity = models.ForeignKey(Quantity)
     notes = models.TextField()
     profile = models.ForeignKey(Profile)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ["-created"]
 
     def __str__(self):
         return str(self.pk)
-
-
-class Quantity(models.Model):
-    item = models.ForeignKey(MenuItem)
-    quantity = models.IntegerField()
-    order = models.ForeignKey(Order)
