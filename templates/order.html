@@ -2,11 +2,17 @@
 
 {% block content %}
   {% for item in order_items  %}
-    {% for name in item.item.all %}
-      {{item}}<br>
-    {% endfor %}
-
-    {{item.notes}}<br>
-    {{item.profile}}<br>
+    <h5>Order Number:
+      {{item}}</h5>
+      Order Items:<br>
+      {% for qty in qty_items  %}
+        {{qty.order_items.name}}  |  QTY: {{qty.quantity}}<br>
+      {% endfor %}<br>
+    Notes:
+      {{item.notes}}<br>
+    Server:
+      {{item.profile}}<br>
+      <br>
   {% endfor %}
+
 {% endblock %}

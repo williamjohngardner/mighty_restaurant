@@ -15,10 +15,10 @@ def get_quantity():
 
 
 class OrderForm(forms.ModelForm):
-    item = forms.ChoiceField(choices=get_choices)
+    order_items = forms.ChoiceField(choices=get_choices)
     # quantity = forms.ChoiceField(choices=get_quantity)
     # profile = forms.ChoiceField(choices=get_profiles)
 
     class Meta:
         model = Quantity
-        fields = ["item", "quantity"]
+        fields = ["order_items", "quantity"]
