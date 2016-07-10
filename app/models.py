@@ -35,13 +35,15 @@ class MenuItem(models.Model):
 
 
 class Quantity(models.Model):
-    item = models.ManyToManyField(MenuItem)
+    order_items = models.ManyToManyField(MenuItem)
     quantity = models.IntegerField()
+
+    def __str__(self):
+        return str(self.pk)
 
 
 class Order(models.Model):
-    item = models.ForeignKey(Quantity, related_name="unicorn")
-    quantity = models.ForeignKey(Quantity)
+    item = models.ManyToManyField(Quantity)
     notes = models.TextField()
     profile = models.ForeignKey(Profile)
 

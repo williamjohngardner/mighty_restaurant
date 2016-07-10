@@ -62,9 +62,9 @@ class OrderDetailView(DetailView):
 
 class CreateOrderView(CreateView):
     form = OrderForm
-    fields = ["item", "notes", "profile"]
+    fields = ["item", "quantity"]
     success_url = reverse_lazy("server_view")
-    queryset = Order.objects.all()
+    queryset = Quantity.objects.all()
     template_name = "app/order_form.html"
 
 
@@ -74,7 +74,7 @@ class DisplayOrderView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['order_items'] = Order.objects.filter(item=1)
+        context['order_items'] = Order.objects.filter(id=1)
         return context
 
 class OwnerView(ListView):
