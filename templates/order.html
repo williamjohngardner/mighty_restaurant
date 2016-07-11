@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="row">
   {% for item in order_items  %}
+  <div class="col s6">
+
     <h5>Order Number:
       {{item}}</h5>
       Order Items:<br>
@@ -13,6 +16,7 @@
     Server:
       {{item.profile}}<br>
       <br>
+    </div>
   {% endfor %}
-
+</div>
 {% endblock %}

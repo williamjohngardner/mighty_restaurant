@@ -7,29 +7,19 @@
     <link rel="stylesheet" href="{% static "app/css/materialize.css" %}" media="screen" charset="utf-8">
   </head>
   <body>
-      <!-- Dropdown Structure -->
-        <ul id="dropdown1" class="dropdown-content">
-          <li><a href="/">one</a></li>
-          <li><a href="/">two</a></li>
-          <li class="divider"></li>
-          <li><a href="/">three</a></li>
-        </ul>
         <nav>
-          <div class="nav-wrapper grey">
+          <div class="nav-wrapper teal">
             <a href="/" class="brand-logo">Bill's Diner</a>
             <ul class="right hide-on-med-and-down">
               <li><a href="{% url 'login' %}">Login</a></li>
+              <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
               <li><a href="{% url 'create_order_view' %}">Create Order</a></li>
-              <li><a href="{% url 'display_order_view' %}">Display Order</a></li>
-
-              <li><a href="{% url 'kitchen_view' %}">Kitchen</a></li>
-              <li><a href="{% url 'server_view' %}">Server</a></li>
+              <li><a href="{% url 'display_order_view' %}">Kitchen</a></li>
               <li><a href="{% url 'owner_view' %}">Owner</a></li>
               {% if request.user.is_authenticated %}
               <li class="navbar-text"><strong>User is logged in as: {{ request.user }}</strong></li>
               {% endif %}
       <!-- Dropdown Trigger -->
-              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right"></i></a></li>
             </ul>
           </div>
         </nav>

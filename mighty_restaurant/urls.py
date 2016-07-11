@@ -8,7 +8,7 @@ from app.views import IndexView, KitchenView, ServerView, OwnerView, ProfilePage
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls, name="admin"),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^$', IndexView.as_view(), name="index_view"),
     url(r'^kitchen/$', KitchenView.as_view(), name="kitchen_view"),

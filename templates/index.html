@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>This needs to be a login page.</h1>
+  <h1>Welcome to Bill's Diner POS.</h1>
+  <h3>Click to login.</h3>
+  <a class="waves-effect waves-light btn" type="button" name="button" href="{% url 'login' %}">LOGIN</a>
 {% endblock %}

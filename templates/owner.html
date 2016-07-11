@@ -2,7 +2,17 @@
 
 
 {% block content %}
+<div class="row">
   {% for category in category_list  %}
-      <h3>{{category}}</h3>
+  <div class="col s6">
+      <h4>{{category}}</h4>
+      {% for item in category.menuitem_set.all  %}
+      <ul>
+        <li><h6><a>{{item}} | {{item.price}}</a></h6></li>
+        <h6>{{item.description}}</h6>
+      </ul>
+      {% endfor %}
+  </div>
   {% endfor %}
+</div>
 {% endblock %}
