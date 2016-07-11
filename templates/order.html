@@ -4,7 +4,9 @@
 <div class="row">
   {% for item in order_items  %}
   <div class="col s6">
-
+    {% for bill_item in item.item.all %}
+      {{ bill_item.order_items.all }}
+    {% endfor %}
     <h5>Order Number:
       {{item}}</h5>
       Order Items:<br>
