@@ -68,17 +68,13 @@ class CreateOrderNumber(CreateView):
     queryset = Order.objects.all()
     template_name = "app/order_form.html"
 
+
 class CreateOrderView(CreateView):
     form = OrderForm
     fields = ["order_items", "quantity", "notes", "order"]
     success_url = reverse_lazy("create_order_view")
     queryset = Quantity.objects.all()
     template_name = "app/order_form.html"
-
-    def forms_valid(self, form):
-        form = form.save(commit=False)
-        form.save()
-        return HttpResponseRedirect(reverse_lazy("create_order_view"))
 
 
 class DisplayOrderView(ListView):
@@ -88,8 +84,9 @@ class DisplayOrderView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['order_items'] = Order.objects.all()
-        context['qty_items'] = Quantity.objects.all()
+        # context['qty_items'] = Quantity.objects.all()
         return context
+
 
 class OwnerView(ListView):
     template_name = "owner.html"

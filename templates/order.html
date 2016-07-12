@@ -2,20 +2,21 @@
 
 {% block content %}
 <div class="row">
-  {% for item in order_items  %}
+  {% for item in order_items %}
   <div class="col s6">
-    <h5>Order Number:
-      {{item}}</h5>
-      Order Items:<br>
-      {% for qty in qty_items  %}
-        {{qty.order_items.name}}  |  QTY: {{qty.quantity}}<br>
-      {% endfor %}<br>
-    Notes:
-      {{item.notes}}<br>
-    Server:
-      {{item.profile}}<br>
-      <br>
+    <h4>Order Number: {{item.id}}</h4>
+    <div class="divider"></div>
+    <h6>Server: {{item.profile}}</h6>
+    <div class="divider"></div>
+    Items:<br>
+    <div class="col s6 offset-s1">
+    {% for qty in item.quantity_set.all  %}
+      <h5>{{qty.order_items.name}}  |  {{qty.quantity}}</h5>
+      <h6>Notes: {{qty.notes}}</h6>
+    {% endfor %}
     </div>
+  </div>
   {% endfor %}
+
 </div>
 {% endblock %}

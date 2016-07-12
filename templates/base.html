@@ -13,7 +13,7 @@
             <ul class="right hide-on-med-and-down">
               <li><a href="{% url 'login' %}">Login</a></li>
               <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
-              <li><a href="{% url 'create_order_view' %}">Create Order</a></li>
+              <li><a href="{% url 'create_order_number' %}">Create Order</a></li>
               <li><a href="{% url 'display_order_view' %}">Kitchen</a></li>
               <li><a href="{% url 'owner_view' %}">Owner</a></li>
               {% if request.user.is_authenticated %}
