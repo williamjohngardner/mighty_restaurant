@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView
+from django.http import HttpResponseRedirect
 
 from app.models import Category, MenuItem, Profile, Position, Order, Quantity
-from app.forms import OrderForm
+from app.forms import OrderForm, OrderNumber
 
 
 class IndexView(TemplateView):
@@ -60,12 +61,24 @@ class OrderDetailView(DetailView):
     model = Order
 
 
+class CreateOrderNumber(CreateView):
+    form = OrderNumber
+    fields = ["profile"]
+    success_url = reverse_lazy("create_order_view")
+    queryset = Order.objects.all()
+    template_name = "app/order_form.html"
+
 class CreateOrderView(CreateView):
     form = OrderForm
-    fields = ["order_items", "quantity"]
-    success_url = reverse_lazy("server_view")
+    fields = ["order_items", "quantity", "notes", "order"]
+    success_url = reverse_lazy("create_order_view")
     queryset = Quantity.objects.all()
     template_name = "app/order_form.html"
+
+    def forms_valid(self, form):
+        form = form.save(commit=False)
+        form.save()
+        return HttpResponseRedirect(reverse_lazy("create_order_view"))
 
 
 class DisplayOrderView(ListView):

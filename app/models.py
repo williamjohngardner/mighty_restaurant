@@ -37,6 +37,7 @@ class MenuItem(models.Model):
 class Quantity(models.Model):
     order_items = models.ForeignKey(MenuItem)
     quantity = models.IntegerField()
+    notes = models.TextField()
     order = models.ForeignKey("app.Order")
 
     def __str__(self):
@@ -45,7 +46,6 @@ class Quantity(models.Model):
 
 class Order(models.Model):
     item = models.ManyToManyField(MenuItem, through=Quantity)
-    notes = models.TextField()
     profile = models.ForeignKey(Profile)
 
     def __str__(self):
